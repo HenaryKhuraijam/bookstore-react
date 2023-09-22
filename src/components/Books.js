@@ -5,22 +5,16 @@ import AddBook from './AddBook';
 const Books = () => (
   <>
     <Book
-      title="Hunger Games"
-      author="Suzanne Collins"
-      status="24%"
-      chapter="chapter 8"
+      title="Life in jungle"
+      author="Kuki fake"
+      status="0%"
+      chapter="chapter 1"
     />
     <Book
-      title="The Adventure Of Sherlocks Holmes"
-      author="Sir Author Conan Doyle"
-      status="75%"
-      chapter="chapter 9"
-    />
-    <Book
-      title="Mind Games"
-      author="Maddy"
-      status="50%"
-      chapter="chapter 10"
+      title="Advanture of Wildlife"
+      author="Tines Alli"
+      status="20%"
+      chapter="chapter 3"
     />
     <AddBook />
   </>
