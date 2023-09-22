@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Book = ({
-  title, author, status, chapter,
+  title, author, status,
+  chapter,
 }) => (
   <>
     <div className="row container mx-auto mb-3 px-3 py-3 bg-white d-flex align-items-between justify-content-between">
@@ -12,9 +13,15 @@ const Book = ({
           <p className="m-0 p-0 text-3">{author}</p>
         </div>
         <div className="d-flex align-items-center justify-content-start m-0 p-0">
-          <p className="border-end pe-3 py-0 m-0 text-3">Comments</p>
-          <p className="border-end px-3 py-0 m-0 text-3">Remove</p>
-          <p className="border-start px-3 py-0 m-0 text-3">Edit</p>
+          <button type="button" className="border-end pe-3 py-0 m-0 text-3">
+            Comments
+          </button>
+          <button type="button" className="border-end px-3 py-0 m-0 text-3">
+            Remove
+          </button>
+          <button type="button" className="border-start px-3 py-0 m-0 text-3">
+            Edit
+          </button>
         </div>
       </div>
       <div className="row col-7 m-0  p-0 d-flex align-items-center justify-content-between">
