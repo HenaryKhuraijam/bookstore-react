@@ -60,10 +60,9 @@
 
 ### Key Features <a name="key-features"></a>
 
-  **[Calculator]**
-  > It will be able to perform all math operations.
-  **[API]**
-  > Fetch data from API.
+  **[Bookstore]**
+  > It will be able to perform Simple functions to add and remove books.
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
