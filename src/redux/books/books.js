@@ -1,34 +1,47 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const initialState = [
-  {
-    id: 'item1',
-    title: 'The Great Gatsby',
-    author: 'John Smith',
+const BaseUrl = 'https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/wJwbTonvXMGZhwk49w7x/books';
+
+export const fetchBooks = createAsyncThunk('books/fetchBooks', async () => {
+  const response = await axios.get(BaseUrl);
+  return response.data;
+});
+
+export const addBook = createAsyncThunk('books/addBook', async (book) => {
+  const { id, title, author } = book;
+  const newBook = {
+    item_id: id,
+    title,
+    author,
     category: 'Fiction',
-  },
-  {
-    id: 'item2',
-    title: 'Anna Karenina',
-    author: 'Leo Tolstoy',
-    category: 'Fiction',
-  },
-  {
-    id: 'item3',
-    title: 'The Selfish Gene',
-    author: 'Richard Dawkins',
-    category: 'Nonfiction',
-  },
-];
+  };
+  await axios.post(BaseUrl, newBook);
+  return book;
+});
+
+export const removeBook = createAsyncThunk('books/removeBook', async (id) => {
+  await axios.delete(`${BaseUrl}/${id}`);
+  return id;
+});
 
 const booksSlice = createSlice({
   name: 'books',
-  initialState,
-  reducers: {
-    addBook: (state, action) => [...state, action.payload],
-    removeBook: (state, action) => state.filter((book) => book.id !== action.payload),
+  initialState: [],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.fulfilled, (state, action) => Object.entries(action.payload)
+        .map((item) => {
+          const { title, author } = item[1][0];
+          return { id: item[0], title, author };
+        }))
+      .addCase(addBook.fulfilled, (state, action) => {
+        state.push(action.payload);
+      })
+      .addCase(removeBook.fulfilled, (state, action) => (
+        state.filter((book) => book.id !== action.payload)));
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
 export default booksSlice.reducer;
