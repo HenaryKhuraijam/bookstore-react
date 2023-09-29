@@ -7,13 +7,11 @@ const AddBook = () => {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
-  const [category, setCategory] = useState('');
 
   const newBook = {
     id: v4(),
     title,
     author,
-    category,
   };
 
   const addBookStore = (e) => {
@@ -21,7 +19,6 @@ const AddBook = () => {
     dispatch(addBook(newBook));
     setTitle('');
     setAuthor('');
-    setCategory('');
   };
 
   return (
@@ -45,14 +42,6 @@ const AddBook = () => {
               required
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
-            />
-            <input
-              type="text"
-              name="category"
-              placeholder="Category"
-              required
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
             />
             <input
               onClick={addBookStore}
