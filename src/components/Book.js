@@ -8,9 +8,7 @@ const Book = ({ book }) => {
 
   const dispatch = useDispatch();
   const removeBookStore = () => {
-    console.log(id);
-    console.log(removeBook);
-    dispatch(removeBook(book));
+    dispatch(removeBook(id));
   };
   return (
     <>
